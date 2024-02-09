@@ -1,54 +1,39 @@
-document.addEventListener("DOMContentLoaded", function(){
-  const numCandles = 24;
-  const candlesContainer = document.querySelector(".candles");
+document.addEventListener('DOMContentLoaded', function() {
+let yesBtnCount=0;
+let noBtnCount=0;
+let yesBtn = document.getElementById('yesBtn');
+let noBtn = document.getElementById('noBtn');
+let gifContainer =document.getElementById("gifContainer")
 
 
-  // Create candles
-  for (let i = 0; i < numCandles; i++) {
-    const candle = document.createElement("div");
-    candle.className = "candle";
-    candle.style.left = `${i * (200 / numCandles)}px`;
-    candlesContainer.appendChild(candle); // Append candle to candles container
+yesBtn.addEventListener('click', function() {
+  if (yesBtnCount === 0) {
+    this.classList.toggle('shrink');
+  }else if (yesBtnCount === 1) {
+    this.classList.toggle('moveLeft');
+  }else if(yesBtnCount === 2){
+    this.classList.toggle('moveRight');
+  } else if(yesBtnCount === 3){
+    this.classList.toggle('moveDown');
+  } else {
+    yesBtn.style.display='none';
   }
-
-// Listen for microphone input
-navigator.mediaDevices.getUserMedia({ audio: true })
-.then(function(stream) {
-  const audioContext = new AudioContext();
-  const analyser = audioContext.createAnalyser();
-  const microphone = audioContext.createMediaStreamSource(stream);
-  const javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
-
-  analyser.smoothingTimeConstant = 0.3;
-  analyser.fftSize = 1024;
-
-  microphone.connect(analyser);
-  analyser.connect(javascriptNode);
-  javascriptNode.connect(audioContext.destination);
-
-  javascriptNode.onaudioprocess = function() {
-    const array = new Uint8Array(analyser.frequencyBinCount);
-    analyser.getByteFrequencyData(array);
-    const average = array.reduce((a, b) => a + b) / array.length;
-
-    if (average > 150) {
-      // Blow detected
-      extinguishCandles(average);
-    }
-  }
-})
-.catch(function(err) {
-  console.error("Error accessing microphone", err);
+  yesBtnCount++;
 });
 
-// Function to extinguish candles
-function extinguishCandles(intensity) {
-const numToExtinguish = Math.round((intensity - 150) / 10); // Adjust based on sensitivity
-const candles = candlesContainer.querySelectorAll(".candle");
-for (let i = 0; i < numToExtinguish; i++) {
-  if (candles[i]) {
-    candles[i].id = "blown";
+noBtn.addEventListener('click', function() {
+  noBtnCount++;
+  if(noBtnCount === 1){
+    document.querySelector('h1').textContent = "That's what I thought.";
+    yesBtn.style.display='none';
+    noBtn.textContent="Continue";
+  }else if(noBtnCount === 2){
+    document.querySelector('h1').textContent = "Happy birthday!!!!!!!!!!";
+    noBtn.style.display='none';
+    gifContainer.style.display = 'block';
+    confetti();
   }
-}
-}
+  
+});
+
 });
