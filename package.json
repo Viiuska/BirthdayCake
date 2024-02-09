@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "nodemon app.js",
-    "deploy": "gh-pages -s app.js",
+    "deploy": "gh-pages -d public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Viia Mäntymäki",
