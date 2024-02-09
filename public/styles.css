@@ -13,14 +13,14 @@
 }
 
 #gifContainer{
-  width: 50%;
+  width: 40%;
   height: auto;
   display: none;
   margin: auto;
 }
 
 .tenor-gif-embed {
-  width: 50% !important;
+  width: 40% !important;
   height: auto !important;
 }
 
