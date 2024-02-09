@@ -1,0 +1,74 @@
+.header {
+  text-align: center;
+  margin-top: 20vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80hv; 
+  width: 80%;
+  margin: auto;
+}
+
+#gifContainer{
+  display: none;
+}
+
+.btn {
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+  margin: 10px;
+  background-color: rgb(146, 184, 253);
+}
+
+
+#yesBtn.shrink {
+  transform: scale(0.8);
+}
+
+#yesBtn.moveLeft{
+  animation: moveLeftAnimation 0.5s forwards;
+}
+
+#yesBtn.moveRight {
+  animation: moveRightAnimation 0.5s forwards;
+}
+
+#yesBtn.moveDown{
+  animation: moveDownAnimation 0.5s forwards;
+}
+
+@keyframes moveLeftAnimation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes moveRightAnimation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(200px);
+  }
+}
+
+@keyframes moveDownAnimation {
+  from {
+    transform: translateY(0) translateX(200px);
+  }
+  to {
+    transform: translateY(100px)translateX(200px);
+  }
+}
+
+
+#noBtn.enlarge {
+  transform: scale(1.2);
+}
