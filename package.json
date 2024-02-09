@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "homepage": "https://Viiuska.github.io/BirthdayCake",
   "dependencies": {
     "canvas-confetti": "^1.9.2",
     "express": "^4.18.2"
@@ -13,6 +14,7 @@
   },
   "scripts": {
     "start": "nodemon app.js",
+    "deploy": "gh-pages -d public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Viia Mäntymäki",
